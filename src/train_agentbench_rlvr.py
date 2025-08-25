@@ -95,6 +95,14 @@ base_model.gradient_checkpointing_enable()
 
 model = base_model
 
+from collections import defaultdict
+if not hasattr(model, "warnings_issued"):
+    model.warnings_issued = defaultdict(bool)
+import types
+if not hasattr(model, "add_model_tags"):
+    model.add_model_tags = types.MethodType(lambda self, tags: None, model)
+
+
 # ---------------------------------------------------------------------------
 # Environment helper
 # ---------------------------------------------------------------------------
@@ -249,6 +257,7 @@ cfg = GRPOConfig(
     num_train_epochs=1,
     logging_steps=1,
     num_generations=4,
+    max_prompt_length=None,
     generation_kwargs={
         "max_new_tokens": MAX_TOKENS,
         "do_sample": True,
@@ -263,6 +272,7 @@ trainer = GRPOTrainer(
     reward_funcs=[ab_reward_function],
     train_dataset=dataset,
     args=cfg,
+    processing_class=tok,
 )
 trainer.processing_class = tok
 trainer.tokenizer = tok
