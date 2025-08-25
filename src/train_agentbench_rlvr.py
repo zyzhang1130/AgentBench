@@ -82,6 +82,16 @@ tok.truncation_side = "right"
 print("📊 AFTER fixes:")
 print("   tok.truncation_side:", tok.truncation_side)
 
+# Ensure the tokenizer can tokenize a simple prompt
+_sample_chat = tok.apply_chat_template(
+    [
+        {"role": "user", "content": "Hello"},
+    ],
+    add_generation_prompt=True,
+    tokenize=False,
+)
+assert len(tok(_sample_chat).input_ids) > 0, "Tokenizer produced no tokens"
+
 print("Loading model...")
 base_model = AutoModelForCausalLMWithValueHead.from_pretrained(
     MODEL_NAME,
@@ -170,6 +180,23 @@ def extract_observation(resp: dict) -> str:
     return "\n\n".join(conversation)
 
 
+def build_prompt_from_resp(resp: dict) -> str:
+    """Build a chat-style prompt from a server response."""
+    obs = extract_observation(resp)
+    user_content = obs if obs else "No observation provided. Begin."
+    system_content = (
+        "Valid actions:\n"
+        "- Action: Operation[operation, input]\n"
+        "- Action: Answer[answer]\n"
+        "Respond with a single action in one of the above formats."
+    )
+    messages = [
+        {"role": "system", "content": system_content},
+        {"role": "user", "content": user_content},
+    ]
+    return tok.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
+
+
 # ---------------------------------------------------------------------------
 # Dataset
 # ---------------------------------------------------------------------------
@@ -181,13 +208,13 @@ class EnvDataset(Dataset):
     def __init__(self, env: AgentBenchHTTPEnv):
         self.env = env
         self.resp = self.env.reset()
-        self.obs = extract_observation(self.resp)
+        self.prompt = build_prompt_from_resp(self.resp)
 
     def __len__(self) -> int:
         return 100  # arbitrary number of steps
 
     def __getitem__(self, idx):
-        return {"prompt": self.obs}
+        return {"prompt": self.prompt}
 
 
 dataset = EnvDataset(env)
@@ -266,7 +293,7 @@ def ab_reward_function(completions, prompts, **kwargs):
             dataset.resp = env.reset()
         else:
             dataset.resp = commit_out
-        dataset.obs = extract_observation(dataset.resp)
+        dataset.prompt = build_prompt_from_resp(dataset.resp)
     return rewards
 
 
