@@ -16,3 +16,5 @@ anthropic~=0.4.1
 fschat~=0.2.31
 accelerate~=0.23.0
 transformers~=4.34.0
+GPUtil~=1.4.0
+trl~=0.7.2
