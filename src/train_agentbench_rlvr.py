@@ -109,23 +109,48 @@ if not hasattr(model, "add_model_tags"):
 
 
 class AgentBenchHTTPEnv:
-    """Minimal HTTP environment wrapper for AgentBench."""
+    """HTTP environment wrapper using the AgentBench TaskWorker routes."""
 
     def __init__(self, port: int = 8000) -> None:
         self.base = f"http://localhost:{port}"
+        self.session_id = None
+        self._next_session_id = 0
+
+    def _new_session_id(self) -> int:
+        sid = self._next_session_id
+        self._next_session_id += 1
+        return sid
 
     def reset(self):
-        return requests.post(self.base + "/api/reset", timeout=30).json()
+        self.session_id = self._new_session_id()
+        payload = {"index": 0, "session_id": self.session_id}
+        resp = requests.post(self.base + "/api/start_sample", json=payload, timeout=30)
+        data = resp.json()
+        self.session_id = data.get("session_id", self.session_id)
+        return data
 
     def step(self, action: str):
-        payload = {"action": action}
-        return requests.post(self.base + "/api/step", json=payload, timeout=120).json()
+        payload = {
+            "session_id": self.session_id,
+            "agent_response": {"content": action},
+        }
+        resp = requests.post(self.base + "/api/interact", json=payload, timeout=120)
+        data = resp.json()
+        self.session_id = data.get("session_id", self.session_id)
+        return data
 
     def snapshot(self):
-        return requests.get(self.base + "/api/snapshot", timeout=30).json()
+        payload = {"session_id": self.session_id}
+        resp = requests.post(self.base + "/api/sample_status", json=payload, timeout=30)
+        return resp.json()
 
     def complete(self):
-        return requests.post(self.base + "/api/complete", timeout=120).json()
+        if self.session_id is None:
+            return {}
+        payload = {"session_id": self.session_id}
+        resp = requests.post(self.base + "/api/cancel", json=payload, timeout=120)
+        self.session_id = None
+        return resp.json()
 
 
 env = AgentBenchHTTPEnv(port=8000)
@@ -136,15 +161,13 @@ env = AgentBenchHTTPEnv(port=8000)
 def extract_observation(resp: dict) -> str:
     if not isinstance(resp, dict):
         return ""
-    session = resp.get("session") or resp.get("info", {}).get("session", {})
-    if session and "chat_history" in session:
-        hist = session["chat_history"]["value"]
-        conversation = []
-        for msg in hist:
-            role = "User" if msg["role"] == "user" else "Agent"
-            conversation.append(f"{role}: {msg['content']}")
-        return "\n\n".join(conversation)
-    return resp.get("observation", "")
+    output = resp.get("output", {})
+    history = output.get("history") or []
+    conversation = []
+    for msg in history:
+        role = "User" if msg.get("role") == "user" else "Assistant"
+        conversation.append(f"{role}: {msg.get('content', '')}")
+    return "\n\n".join(conversation)
 
 
 # ---------------------------------------------------------------------------
@@ -230,7 +253,7 @@ def ab_reward_function(completions, prompts, **kwargs):
         base_snapshot = env.snapshot()
         cand_rewards = []
         for cand in cands:
-            payload = {"session": base_snapshot.get("session"), "candidate": cand}
+            payload = {"session_id": base_snapshot.get("session_id"), "candidate": cand}
             resp = requests.post(env.base + "/api/branch/complete", json=payload, timeout=120)
             branch = resp.json()
             outcome = branch.get("session", {}).get("evaluation_record", {}).get("outcome")
@@ -239,7 +262,10 @@ def ab_reward_function(completions, prompts, **kwargs):
         best_cand = cands[best_idx]
         commit_out = env.step(best_cand)
         rewards.extend(cand_rewards)
-        dataset.resp = commit_out if not commit_out.get("done") else env.reset()
+        if commit_out.get("output", {}).get("status") != "RUNNING":
+            dataset.resp = env.reset()
+        else:
+            dataset.resp = commit_out
         dataset.obs = extract_observation(dataset.resp)
     return rewards
 
