@@ -1,0 +1,385 @@
+{
+  "type": "config",
+  "model_name": "Qwen/Qwen2.5-7B-Instruct",
+  "learning_rate": 5e-06,
+  "num_generations": 4,
+  "timestamp": "20250828_004737"
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Begin Task",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: StartSimulation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Begin Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Begin Task",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Begin Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Start Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Begin Experiment",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: StartSimulation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Begin Task",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: Start Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: StartSimulation",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Begin Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Begin",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: StartSimulation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: BeginScenario",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Begin Experiment",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: InitiateObservation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Begin",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: StartSimulation",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: InitiateObservation",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Operation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Begin Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Begin",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: Operation",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Operation",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Begin",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: StartObservation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: StartExperiment",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Begin",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Begin Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Observationaits the environment for initial conditions.",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Observe",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: Start Experiment",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Begin Experiment",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 0,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 1,
+  "completion": "Action: Initialize Observation",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 2,
+  "completion": "Action: Start",
+  "env_reward": 0.0
+}
+{
+  "type": "candidate_evaluation",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "completion_idx": 3,
+  "completion": "Action: StartExperiment",
+  "env_reward": 0.0
+}
+{
+  "type": "commit_skipped",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "reason": "no active session"
+}
+{
+  "type": "commit",
+  "prompt": "<|im_start|>system\nYou are interacting with an environment. Respond with a single action.\nExamples:\n- DBBench: 'Action: Operation' with a SQL block, or 'Action: Answer' with Final Answer.\n- WebShop: 'Thought:' then 'Action:' lines like search[...] or click[...].<|im_end|>\n<|im_start|>user\nNo observation provided. Begin.<|im_end|>\n<|im_start|>assistant\n",
+  "best_completion_idx": 0,
+  "committed_completion": "Action: Start",
+  "done": false,
+  "commit_status": null,
+  "best_candidate_reward": 0.0
+}

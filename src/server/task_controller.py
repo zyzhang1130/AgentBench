@@ -204,6 +204,8 @@ class TaskController:
         self.router.post("/clean_worker")(self.clean_worker)
         self.router.post("/clean_session")(self.clean_session)
         self.router.post("/sync_all")(self.sync_all)
+        # Debug endpoint to introspect current tasks and sessions
+        self.router.get("/debug/current_tasks")(self.debug_current_tasks)
 
         self.router.on_event("startup")(self._initialize)
         self.router.on_event("startup")(lambda: asyncio.create_task(self._session_gc()))
@@ -267,6 +269,7 @@ class TaskController:
         return self.sessions.dump()
 
     async def receive_heartbeat(self, data: RegisterRequest):
+        print(f"[Controller] Heartbeat name={data.name} address={data.address} capacity={data.concurrency}")
         async with self.tasks_lock:
             if data.name not in self.tasks:
                 self.tasks[data.name] = TaskData(indices=data.indices)
@@ -285,6 +288,7 @@ class TaskController:
                     address=data.address,
                     capacity=data.concurrency,
                 )
+                print(f"[Controller] Registered worker id={wid} for task={data.name} at {data.address}")
                 return
 
         if worker.status != WorkerStatus.ALIVE:
@@ -293,7 +297,7 @@ class TaskController:
                 raise HTTPException(400, "Error: Worker status abnormal")
 
     async def start_sample(self, data: StartSampleRequest):
-        print("starting")
+        print(f"starting task={data.name} index={data.index}")
         async with self.tasks_lock:
             if data.name not in self.tasks:
                 raise HTTPException(406, "Error: Task does not exist")
@@ -314,7 +318,7 @@ class TaskController:
             if target_worker is None:
                 raise HTTPException(406, "Error: No workers available")
             target_worker.current += 1
-        print("worker selected")
+        print(f"worker selected task={data.name} worker_id={target_worker.id}")
 
         await self.sessions.lock.acquire()
         sid = self.session_next_id
@@ -326,7 +330,7 @@ class TaskController:
         )
 
         async with self.sessions[sid].lock.handle(self.sessions.lock):
-            print("sending job")
+            print(f"sending job task={data.name} index={data.index} sid={sid}")
             try:
                 result = await self._call_worker(
                     data.name,
@@ -347,7 +351,7 @@ class TaskController:
                     await self._sync_worker_status(data.name, target_worker.id)
                 raise
 
-            print("job sent")
+            print(f"job sent task={data.name} sid={sid}")
 
             if SampleStatus(result["output"]["status"]) != SampleStatus.RUNNING:
                 print(ColorMessage.green("finishing session"), result["output"]["status"])
@@ -383,7 +387,7 @@ class TaskController:
             async with self.sessions.lock:
                 self.sessions[data.session_id].last_update = time.time()
 
-            print("[Server] interact result")
+            print(f"[Server] interact result task={session.name} sid={data.session_id}")
 
             if SampleStatus(result["output"]["status"]) != SampleStatus.RUNNING:
                 print(ColorMessage.green("finishing session"), result["output"]["status"])
@@ -415,6 +419,7 @@ class TaskController:
             raise HTTPException(400, "Error: Session does not exist")
         session = self.sessions[sid]
         async with session.lock.handle(self.sessions.lock):
+            print(f"cancelling task={session.name} sid={sid}")
             result = await self._call_worker(
                 session.name,
                 session.worker_id,
@@ -424,6 +429,17 @@ class TaskController:
             )
             await self._finish_session(data.session_id)
             return result
+
+    async def debug_current_tasks(self):
+        """Return a snapshot of current tasks, workers, and sessions for debugging."""
+        async with self.tasks_lock:
+            tasks_dump = {name: task.dump() for name, task in self.tasks.items()}
+        async with self.sessions.lock:
+            sessions_dump = self.sessions.dump()
+        return {
+            "tasks": tasks_dump,
+            "sessions": sessions_dump,
+        }
 
     async def get_indices(self, name: str):
         async with self.tasks_lock:

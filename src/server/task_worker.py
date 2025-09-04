@@ -125,7 +125,7 @@ class TaskWorker:
         ))
 
     async def start_sample(self, parameters: WorkerStartSampleRequest):
-        print("job received")
+        print(f"job received task={self.task.name} index={parameters.index} sid={parameters.session_id}")
         async with self.session_lock:
             if parameters.session_id in self.session_map:
                 raise HTTPException(status_code=400, detail="Session ID already exists")
@@ -148,16 +148,16 @@ class TaskWorker:
                 task=t,
             )
 
-        print("about to pull agent")
+        print(f"about to pull agent task={self.task.name} sid={parameters.session_id}")
         env_output = await session.controller.agent_pull()
-        print("output got")
+        print(f"output got task={self.task.name} sid={parameters.session_id}")
         return {
             "session_id": parameters.session_id,
             "output": env_output.dict(),
         }
 
     async def interact(self, parameters: InteractRequest):
-        print("interacting")
+        print(f"interacting task={self.task.name} sid={parameters.session_id}")
         async with self.session_lock:
             running = self.session_map.get(parameters.session_id, None)
         if running is None:
@@ -167,7 +167,7 @@ class TaskWorker:
                 status_code=400,
                 detail="Task Executing, please do not send new request.",
             )
-        print("awaiting agent pull in interact")
+        print(f"awaiting agent pull in interact task={self.task.name} sid={parameters.session_id}")
         response = await running.session.controller.agent_pull(
             parameters.agent_response
         )
@@ -194,7 +194,7 @@ class TaskWorker:
             if parameters.session_id not in self.session_map:
                 raise HTTPException(status_code=400, detail="No such session")
             running = self.session_map.get(parameters.session_id)
-            print("canceling", running)
+            print(f"canceling task={self.task.name} sid={parameters.session_id}")
             running.session.controller.env_input = AgentOutput(status=AgentOutputStatus.CANCELLED)
             running.session.controller.env_signal.release()
             print("awaiting task")

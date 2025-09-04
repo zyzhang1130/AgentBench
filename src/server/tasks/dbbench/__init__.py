@@ -146,6 +146,39 @@ class DBBench(Task):
                 f"from( SELECT substring(MD5(CONCAT_WS(',', {columns})), 1, 5) AS rowhash FROM `{db}`) as sub;"
             )
             answer = container.execute(md5_query, db)
+        # Compute a correctness-based reward using the ground truth label
+        try:
+            gt = self.dataset[index][1]
+            t = entry["type"][0]
+            reward_val = 0.0
+            if t in ("INSERT", "DELETE", "UPDATE"):
+                reward_val = 1.0 if str(answer) == str(gt) else 0.0
+            else:
+                # SELECT-style: compare predicted answers to label
+                pred = answer
+                try:
+                    # answer may be a JSON-like list in string form
+                    pred_list = list(eval(pred))
+                except Exception:
+                    pred_list = [pred]
+                cor_list = gt
+                # Normalize types and compare
+                if isinstance(pred_list, list) and isinstance(cor_list, list):
+                    if len(pred_list) == 1 and len(cor_list) == 1:
+                        try:
+                            reward_val = 1.0 if float(pred_list[0]) == float(cor_list[0]) else 0.0
+                        except Exception:
+                            reward_val = 1.0 if str(pred_list[0]) == str(cor_list[0]) else 0.0
+                    else:
+                        try:
+                            reward_val = 1.0 if set(pred_list) == set(cor_list) else 0.0
+                        except Exception:
+                            reward_val = 0.0
+                else:
+                    reward_val = 1.0 if str(pred) == str(cor_list) else 0.0
+        except Exception:
+            reward_val = 0.0
+
         container.execute(f"drop database `{db}`")
         return TaskOutput(
             status=finish_reason,
@@ -153,6 +186,8 @@ class DBBench(Task):
                 "answer": str(answer),
                 "type": entry["type"][0],
                 "error": error,
+                "reward": float(reward_val),
+                "done": finish_reason != SampleStatus.RUNNING,
             },
             history=session.history,
         )
